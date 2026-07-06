@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadya - Frontend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#000000',
+                            800: '#0a0a0a',
+                            700: '#171717',
+                            600: '#262626',
+                        },
+                        accent: {
+                            light: '#e2e8f0',
+                            primary: '#ffffff',
+                            glow: 'rgba(255, 255, 255, 0.1)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        heading: ['"Syne"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #000000;
+            color: #e5e5e5;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #404040; }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(23, 23, 23, 0.8), rgba(10, 10, 10, 0.9));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #8a8a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Custom FX */
+        .hover-underline { position: relative; }
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+        .hover-underline:hover::after { width: 100%; }
+
+        .magnetic-wrap { display: inline-block; cursor: pointer; }
+        
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        /* Custom Cursor */
+        @media (pointer: fine) {
+            body { cursor: none; }
+            #custom-cursor {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 1);
+                mix-blend-mode: difference;
+                pointer-events: none;
+                z-index: 10000;
+                transform: translate(-50%, -50%);
+                transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s;
+                will-change: transform;
+            }
+            #custom-cursor.hovered {
+                width: 60px;
+                height: 60px;
+                background-color: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(2px);
+                border: 1px solid rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #000000;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1), opacity 1s ease;
+        }
+        #preloader.hide {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.2em;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 4px solid white;
+            width: 0;
+            animation: typing 1s steps(30, end) forwards, blink-caret .75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: white; } }
+
+        /* Infinite Marquee */
+        .marquee-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            padding: 3rem 0;
+            background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(10,10,10,0) 10%, rgba(10,10,10,0) 90%, rgba(0,0,0,1) 100%);
+        }
+        .marquee-wrapper::before, .marquee-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .marquee-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #000000 0%, transparent 100%);
+        }
+        .marquee-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #000000 0%, transparent 100%);
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 35s linear infinite;
+        }
+        .marquee-item {
+            display: inline-block;
+            padding: 0 3rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .marquee-item:hover {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Tilt utility */
+        .data-tilt {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .data-tilt-inner {
+            transform: translateZ(30px);
+        }
+    </style>
+</head>
+<body class="antialiased font-sans text-accent-light selection:bg-white/20 selection:text-white">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-text">NADYA.</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor" class="hidden md:block"></div>
+
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="blob bg-white/5 w-[500px] h-[500px] rounded-full top-[-20%] left-[-10%]"></div>
+        <div class="blob bg-zinc-600/10 w-[600px] h-[600px] rounded-full bottom-[-20%] right-[-10%]" style="animation-delay: -5s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 mt-4 rounded-full glass flex justify-between items-center w-[95%] md:w-[80%]">
+            <a href="#" class="text-xl font-heading font-bold text-white tracking-wide hover:opacity-70 transition-opacity">
+                NADYA<span class="text-zinc-500">.</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-zinc-400">
+                <a href="#about" class="nav-link hover:text-white transition-colors hover-underline" data-section="about" data-id="Tentang" data-en="About">About</a>
+                <a href="#projects" class="nav-link hover:text-white transition-colors hover-underline" data-section="projects" data-id="Proyek" data-en="Projects">Projects</a>
+                <a href="#experience" class="nav-link hover:text-white transition-colors hover-underline" data-section="experience" data-id="Pengalaman" data-en="Experience">Experience</a>
+                <a href="#contact" class="nav-link hover:text-white transition-colors hover-underline" data-section="contact" data-id="Kontak" data-en="Contact">Contact</a>
+            </div>
+
+            <div class="flex items-center space-x-2 text-xs font-mono font-medium text-zinc-500 bg-dark-800 px-3 py-1.5 rounded-full border border-white/5">
+                <button id="lang-en" class="text-white font-bold transition-all" onclick="setLanguage('en')">EN</button>
+                <span class="text-zinc-700">|</span>
+                <button id="lang-id" class="hover:text-white transition-all" onclick="setLanguage('id')">ID</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex flex-col justify-center relative px-6 pt-20">
+        <div class="max-w-5xl mx-auto w-full relative z-10">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-3 px-4 py-2 mb-8 rounded-full border border-white/10 bg-white/5 text-zinc-300 text-xs font-mono font-medium backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span data-id="TERSEDIA UNTUK BEKERJA" data-en="AVAILABLE FOR WORK">AVAILABLE FOR WORK</span>
+                </div>
+            </div>
+            
+            <h1 class="font-heading text-6xl md:text-8xl lg:text-[7rem] font-bold tracking-tight mb-6 leading-[1.1] text-white reveal delay-100">
+                Frontend <br />
+                <span class="text-gradient italic font-light">Developer</span>
+            </h1>
+            
+            <p class="text-lg md:text-2xl text-zinc-400 max-w-2xl mb-12 font-light leading-relaxed reveal delay-200" data-id="Menciptakan pengalaman digital yang elegan. Memadukan estetika desain dengan rekayasa frontend yang presisi." data-en="Crafting elegant digital experiences. Bridging the gap between aesthetic design and precision frontend engineering.">
+                Crafting elegant digital experiences. Bridging the gap between aesthetic design and precision frontend engineering.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-6 reveal delay-300">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-4 bg-white text-black rounded-full hover:scale-105 transition-transform duration-300 flex items-center justify-center gap-3 font-medium shadow-[0_0_20px_rgba(255,255,255,0.15)] group">
+                    <span data-id="Eksplorasi Karya" data-en="Explore Works">Explore Works</span>
+                    <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 text-white rounded-full hover:bg-white/5 transition-colors duration-300 flex items-center justify-center gap-3 font-medium">
+                    <span data-id="Tentang Saya" data-en="About Me">About Me</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-6 relative section-spy">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <div class="lg:col-span-7">
+                    <h2 class="font-heading text-sm uppercase tracking-[0.2em] text-zinc-500 mb-4 reveal" data-id="01. TENTANG" data-en="01. ABOUT">01. ABOUT</h2>
+                    <h3 class="font-heading text-4xl md:text-5xl font-bold mb-8 text-white reveal delay-100" data-id="Merancang Antarmuka dengan Tujuan" data-en="Designing Interfaces with Purpose">Designing Interfaces with Purpose</h3>
+                    
+                    <div class="space-y-6 text-zinc-400 text-lg font-light leading-relaxed reveal delay-200">
+                        <p data-id="Saya adalah pengembang frontend yang memiliki hasrat terhadap interaksi yang halus dan desain minimalis. Melalui 'vibecoding', saya berfokus pada detail estetika yang membuat produk digital terasa hidup." data-en="I am a frontend developer with a passion for smooth interactions and minimalist design. Through 'vibecoding', I focus on aesthetic details that make digital products feel alive.">
+                            I am a frontend developer with a passion for smooth interactions and minimalist design. Through 'vibecoding', I focus on aesthetic details that make digital products feel alive.
+                        </p>
+                        <p data-id="Selain keahlian frontend, saya juga memiliki pemahaman fundamental di sisi backend melalui pengalaman dengan framework Laravel dan manajemen database, memungkinkan saya berkolaborasi secara efektif dalam tim full-stack." data-en="Beyond frontend expertise, I possess fundamental backend understanding through experience with the Laravel framework and database management, enabling effective collaboration in full-stack teams.">
+                            Beyond frontend expertise, I possess fundamental backend understanding through experience with the Laravel framework and database management, enabling effective collaboration in full-stack teams.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-8 mt-12 reveal delay-300">
+                        <div>
+                            <p class="text-4xl font-heading font-bold text-white mb-2">1<span class="text-zinc-500 text-2xl">Y</span></p>
+                            <p class="text-xs text-zinc-500 uppercase tracking-widest" data-id="Pengalaman" data-en="Experience">Experience</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-heading font-bold text-white mb-2">2<span class="text-zinc-500 text-2xl">+</span></p>
+                            <p class="text-xs text-zinc-500 uppercase tracking-widest" data-id="Proyek Selesai" data-en="Projects Done">Projects Done</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative reveal delay-200">
+                    <div class="data-tilt relative w-full aspect-[4/5] rounded-3xl overflow-hidden group">
+                        <div class="absolute inset-0 bg-dark-800 animate-pulse -z-10"></div>
+                        <div class="data-tilt-inner w-full h-full">
+                            <img src="pp/pp.png.png" alt="Nadya" onerror="this.style.display='none'" class="w-full h-full object-cover filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out">
+                        </div>
+                        <div class="absolute inset-0 border border-white/10 rounded-3xl z-10 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 border border-white/20 rounded-full -z-10 animate-float"></div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Marquee Section -->
+    <section class="py-10 border-y border-white/5 relative bg-dark-900 overflow-hidden reveal">
+        <div class="marquee-wrapper">
+            <div class="marquee-content" data-hover-stop="true">
+                <!-- Set 1 -->
+                <span class="marquee-item">HTML5</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">CSS3</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">JAVASCRIPT</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">LARAVEL</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">WORDPRESS</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">UI/UX</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">FIGMA</span><span class="marquee-item">&bull;</span>
+                <!-- Set 2 for infinite effect -->
+                <span class="marquee-item">HTML5</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">CSS3</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">JAVASCRIPT</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">LARAVEL</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">WORDPRESS</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">UI/UX</span><span class="marquee-item">&bull;</span>
+                <span class="marquee-item">FIGMA</span><span class="marquee-item">&bull;</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 px-6 relative section-spy bg-dark-800/30 border-b border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-heading text-sm uppercase tracking-[0.2em] text-zinc-500 mb-4 reveal text-center" data-id="02. PROYEK" data-en="02. PROJECTS">02. PROJECTS</h2>
+            <h3 class="font-heading text-4xl md:text-5xl font-bold mb-20 text-white reveal delay-100 text-center" data-id="Karya Terpilih" data-en="Selected Works">Selected Works</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <div class="glass-card rounded-3xl p-8 md:p-10 flex flex-col justify-between group min-h-[450px] reveal data-tilt">
+                    <div class="data-tilt-inner">
+                        <div class="flex gap-2 mb-8 flex-wrap font-mono">
+                            <span class="px-3 py-1 text-[10px] uppercase border border-white/10 bg-white/5 text-zinc-300 rounded-full tracking-wider">Laravel</span>
+                            <span class="px-3 py-1 text-[10px] uppercase border border-white/10 bg-white/5 text-zinc-300 rounded-full tracking-wider">PHP</span>
+                        </div>
+                        <h4 class="font-heading text-3xl font-bold text-white mb-4 group-hover:text-zinc-300 transition-colors">Laravel Web App</h4>
+                        <p class="text-zinc-400 font-light leading-relaxed" data-id="Aplikasi web lengkap pertama yang dibangun menggunakan framework Laravel dan manajemen database menggunakan phpMyAdmin." data-en="My first full web application built using the Laravel framework and database management using phpMyAdmin.">
+                            My first full web application built using the Laravel framework and database management using phpMyAdmin.
+                        </p>
+                    </div>
+                    <div class="mt-10 data-tilt-inner">
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-mono text-white bg-white/10 hover:bg-white/20 px-6 py-3 rounded-full transition-colors border border-white/10 relative z-20">
+                            <i class="fa-brands fa-github text-lg"></i>
+                            <span>Github</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 md:p-10 flex flex-col justify-between group min-h-[450px] reveal delay-100 relative overflow-hidden data-tilt">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10 data-tilt-inner">
+                        <div class="flex gap-2 mb-8 flex-wrap font-mono">
+                            <span class="px-3 py-1 text-[10px] uppercase border border-white/10 bg-white/5 text-zinc-300 rounded-full tracking-wider">WordPress</span>
+                            <span class="px-3 py-1 text-[10px] uppercase border border-white/10 bg-white/5 text-zinc-300 rounded-full tracking-wider">Design</span>
+                        </div>
+                        <h4 class="font-heading text-3xl font-bold text-white mb-4 group-hover:text-zinc-300 transition-colors">Company Profile</h4>
+                        <p class="text-zinc-400 font-light leading-relaxed" data-id="Pembuatan website company profile yang menitikberatkan pada aksesibilitas, SEO-friendly, dan desain modern yang bersih menggunakan WordPress." data-en="Creation of a company profile website that emphasizes accessibility, SEO-friendly, and a clean modern design using WordPress.">
+                            Creation of a company profile website that emphasizes accessibility, SEO-friendly, and a clean modern design using WordPress.
+                        </p>
+                    </div>
+                    <div class="mt-10 relative z-20 data-tilt-inner">
+                        <a href="https://nadya805.wordpress.com/" target="_blank" class="inline-flex items-center gap-3 text-sm font-medium text-black bg-white hover:bg-zinc-200 px-8 py-4 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                            <span data-id="Kunjungi Website" data-en="Visit Website">Visit Website</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-32 px-6 relative section-spy">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="font-heading text-sm uppercase tracking-[0.2em] text-zinc-500 mb-4 reveal text-center" data-id="03. PENGALAMAN" data-en="03. EXPERIENCE">03. EXPERIENCE</h2>
+            <h3 class="font-heading text-4xl md:text-5xl font-bold mb-20 text-white reveal delay-100 text-center" data-id="Perjalanan Karir" data-en="Career Journey">Career Journey</h3>
+
+            <div class="space-y-8">
+                
+                <div class="group relative bg-transparent border border-white/10 p-8 md:p-10 rounded-3xl hover:bg-dark-800 transition-colors duration-500 reveal cursor-pointer overflow-hidden data-tilt">
+                    <div class="absolute left-0 top-0 w-1 h-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 data-tilt-inner">
+                        <div class="md:w-1/4">
+                            <p class="font-mono text-zinc-500 text-sm">2025 &mdash; Present</p>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h4 class="font-heading text-2xl font-bold text-white mb-2">Frontend Developer</h4>
+                            <p class="text-sm text-zinc-400 font-mono mb-4 uppercase tracking-wider" data-id="Freelance & Vibecoding" data-en="Freelance & Vibecoding">Freelance & Vibecoding</p>
+                            <p class="text-zinc-400 font-light leading-relaxed" data-id="Fokus pada perancangan dan pengembangan antarmuka pengguna interaktif menggunakan teknologi modern, dengan perhatian penuh pada pengalaman pengguna (UX) dan aksesibilitas." data-en="Focusing on designing and developing interactive user interfaces using modern technologies, with full attention to user experience (UX) and accessibility.">
+                                Focusing on designing and developing interactive user interfaces using modern technologies, with full attention to user experience (UX) and accessibility.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative bg-transparent border border-white/10 p-8 md:p-10 rounded-3xl hover:bg-dark-800 transition-colors duration-500 reveal delay-100 cursor-pointer overflow-hidden data-tilt">
+                    <div class="absolute left-0 top-0 w-1 h-full bg-zinc-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 data-tilt-inner">
+                        <div class="md:w-1/4">
+                            <p class="font-mono text-zinc-500 text-sm">2024 &mdash; 2025</p>
+                        </div>
+                        <div class="md:w-3/4">
+                            <h4 class="font-heading text-2xl font-bold text-white mb-2">Web Development</h4>
+                            <p class="text-sm text-zinc-400 font-mono mb-4 uppercase tracking-wider" data-id="Laravel & Database" data-en="Laravel & Database">Laravel & Database</p>
+                            <p class="text-zinc-400 font-light leading-relaxed" data-id="Membangun fondasi kuat dalam pengembangan backend dan pengelolaan database menggunakan framework Laravel dan phpMyAdmin." data-en="Built a strong foundation in backend development and database management using the Laravel framework and phpMyAdmin.">
+                                Built a strong foundation in backend development and database management using the Laravel framework and phpMyAdmin.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6 relative section-spy bg-gradient-to-b from-transparent to-dark-800">
+        <div class="max-w-4xl mx-auto reveal">
+            <div class="glass-card p-12 md:p-20 rounded-[3rem] text-center relative overflow-hidden border border-white/10 data-tilt">
+                <div class="data-tilt-inner">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.05)_0%,_transparent_60%)] -z-10 pointer-events-none"></div>
+                    
+                    <h2 class="font-heading text-sm uppercase tracking-[0.2em] text-zinc-400 mb-6" data-id="04. KONTAK" data-en="04. CONTACT">04. CONTACT</h2>
+                    <h3 class="font-heading text-5xl md:text-7xl font-bold mb-8 text-white tracking-tight" data-id="Mari Berkolaborasi" data-en="Let's Collaborate">Let's Collaborate</h3>
+                    
+                    <p class="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto font-light" data-id="Punya proyek menarik atau sekadar ingin menyapa? Kotak masuk saya selalu terbuka." data-en="Have an exciting project or just want to say hi? My inbox is always open.">
+                        Have an exciting project or just want to say hi? My inbox is always open.
+                    </p>
+
+                    <a href="mailto:nadyapzfw@gmail.com" class="magnetic-wrap inline-block mb-16 relative z-20">
+                        <div class="px-10 py-5 bg-white text-black font-bold text-lg rounded-full shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-transform duration-300 hover:scale-105">
+                            <span data-id="Kirim Pesan" data-en="Send a Message">Send a Message</span>
+                        </div>
+                    </a>
+
+                    <div class="flex justify-center gap-8 border-t border-white/10 pt-12 relative z-20">
+                        <a href="mailto:nadyapzfw@gmail.com" class="text-zinc-400 hover:text-white transition-colors hover:-translate-y-1 duration-300 p-2">
+                            <i class="fa-solid fa-envelope text-2xl"></i>
+                        </a>
+                        <a href="https://github.com/nadyapzfw-eng" target="_blank" class="text-zinc-400 hover:text-white transition-colors hover:-translate-y-1 duration-300 p-2">
+                            <i class="fa-brands fa-github text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nadyapzfw-undefined-6b61a0420/" target="_blank" class="text-zinc-400 hover:text-white transition-colors hover:-translate-y-1 duration-300 p-2">
+                            <i class="fa-brands fa-linkedin-in text-2xl"></i>
+                        </a>
+                        <a href="https://wa.me/62895402857293" target="_blank" class="text-zinc-400 hover:text-white transition-colors hover:-translate-y-1 duration-300 p-2">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16 font-mono text-sm text-zinc-600">
+                &copy; <span id="year">2026</span> NADYA. CRAFTED WITH <i class="fa-solid fa-heart text-zinc-500 mx-1"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            /* Preloader Logic */
+            const preloader = document.getElementById('preloader');
+            // Allow typing animation to finish
+            setTimeout(() => {
+                preloader.classList.add('hide');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 1000); // match transition duration
+            }, 1800);
+
+            /* Enhanced Scroll Reveal */
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+
+            /* Active Navbar State & Glass Effect on Scroll */
+            const navbar = document.getElementById('navbar');
+            const sections = document.querySelectorAll('.section-spy, #hero');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2');
+                    navbar.classList.remove('py-4', 'mt-4');
+                } else {
+                    navbar.classList.add('py-4', 'mt-4');
+                    navbar.classList.remove('py-2');
+                }
+            });
+
+            const navObserverOptions = {
+                root: null,
+                rootMargin: '-50% 0px -50% 0px',
+                threshold: 0
+            };
+
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('text-white', 'font-semibold');
+                            link.classList.add('text-zinc-400');
+                        });
+                        const activeLink = document.querySelector(`.nav-link[data-section="${id}"]`);
+                        if (activeLink) {
+                            activeLink.classList.remove('text-zinc-400');
+                            activeLink.classList.add('text-white', 'font-semibold');
+                        }
+                    }
+                });
+            }, navObserverOptions);
+
+            sections.forEach(section => {
+                navObserver.observe(section);
+            });
+
+            /* Magnetic Button Effect */
+            const magnets = document.querySelectorAll('.magnetic-wrap');
+            magnets.forEach(magnet => {
+                magnet.addEventListener('mousemove', function(e) {
+                    const position = magnet.getBoundingClientRect();
+                    const x = e.pageX - position.left - position.width / 2;
+                    const y = e.pageY - position.top - position.height / 2;
+                    magnet.children[0].style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                });
+                magnet.addEventListener('mouseleave', function(e) {
+                    magnet.children[0].style.transform = 'translate(0px, 0px)';
+                });
+            });
+            
+            /* Custom Cursor & 3D Tilt */
+            const cursor = document.getElementById('custom-cursor');
+            let mouseX = 0;
+            let mouseY = 0;
+            let cursorX = 0;
+            let cursorY = 0;
+
+            if (window.matchMedia("(pointer: fine)").matches) {
+                // Smooth cursor animation loop
+                function animateCursor() {
+                    let distX = mouseX - cursorX;
+                    let distY = mouseY - cursorY;
+                    cursorX += distX * 0.2;
+                    cursorY += distY * 0.2;
+                    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+                    requestAnimationFrame(animateCursor);
+                }
+                
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+                
+                // Start cursor animation
+                animateCursor();
+
+                const hoverElements = document.querySelectorAll('a, button, .magnetic-wrap, .data-tilt');
+                hoverElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+                });
+
+                /* 3D Tilt Logic */
+                const tiltElements = document.querySelectorAll('.data-tilt');
+                tiltElements.forEach(el => {
+                    el.addEventListener('mousemove', (e) => {
+                        const rect = el.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const tiltX = ((y - centerY) / centerY) * -5; 
+                        const tiltY = ((x - centerX) / centerX) * 5;
+                        
+                        el.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    });
+                    
+                    el.addEventListener('mouseleave', () => {
+                        el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                    });
+                });
+            }
+
+            /* Initialize Default Language to English */
+            setLanguage('en');
+        });
+
+        /* Language Switcher Logic */
+        let currentLang = 'en';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            document.getElementById('lang-en').className = lang === 'en' ? 'text-white font-bold transition-all' : 'text-zinc-500 hover:text-white transition-all';
+            document.getElementById('lang-id').className = lang === 'id' ? 'text-white font-bold transition-all' : 'text-zinc-500 hover:text-white transition-all';
+            
+            const translatableElements = document.querySelectorAll('[data-id][data-en]');
+            translatableElements.forEach(el => {
+                const targetText = lang === 'id' ? el.getAttribute('data-id') : el.getAttribute('data-en');
+                
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    el.textContent = targetText;
+                    el.style.opacity = 1;
+                }, 200);
+                
+                el.style.transition = 'opacity 0.2s ease-in-out';
+            });
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>
