@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Designs — Nadya</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#09090b',
+                        surface:    '#18181b',
+                        border:     '#27272a',
+                    },
+                    fontFamily: {
+                        sans:    ['"Manrope"',  'sans-serif'],
+                        heading: ['"Outfit"',   'sans-serif'],
+                        mono:    ['"Fira Code"','monospace'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%':   { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Outlined stroke text (like in the screenshot) */
+        .text-stroke {
+            -webkit-text-stroke: 2px white;
+            color: transparent;
+        }
+
+        /* Project card image preview */
+        .preview-img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover .preview-img {
+            transform: scale(1.04);
+        }
+
+        /* Number label */
+        .project-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Line reveal */
+        .line-reveal {
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .line-reveal.active {
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-white/20 font-sans bg-background text-zinc-200">
+
+    <!-- ═══════════════════════════════════════════
+         NAVIGATION
+    ════════════════════════════════════════════ -->
+    <nav class="fixed w-full z-50 top-0 bg-background/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-heading font-black tracking-widest text-white hover:opacity-70 transition-opacity duration-300">
+                NADYA.
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold font-heading tracking-widest text-zinc-500 uppercase">
+                <a href="index.html#about"      class="hover:text-white transition-colors">ABOUT</a>
+                <a href="index.html#projects"   class="text-white">PROJECTS</a>
+                <a href="index.html#experience" class="hover:text-white transition-colors">EXPERIENCE</a>
+                <a href="index.html#contact"    class="hover:text-white transition-colors">CONTACT</a>
+            </div>
+            <a href="index.html" class="flex items-center gap-2 text-xs font-mono font-bold text-zinc-500 hover:text-white transition-colors uppercase tracking-widest">
+                <i class="fa-solid fa-arrow-left text-sm"></i>
+                Back to Portfolio
+            </a>
+        </div>
+    </nav>
+
+
+    <!-- ═══════════════════════════════════════════
+         HERO / HEADER
+    ════════════════════════════════════════════ -->
+    <section class="pt-32 pb-16 px-6 border-b border-border">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Subtitle -->
+            <div class="flex items-center gap-3 mb-8 reveal">
+                <a href="index.html" class="flex items-center gap-2 font-mono text-xs text-zinc-500 hover:text-white uppercase tracking-widest transition-colors">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+
+            <!-- Big Title (mixed filled + outlined, like the screenshot) -->
+            <h1 class="font-heading font-black leading-none tracking-tighter mb-8 reveal">
+                <span class="text-white text-[clamp(3rem,10vw,8rem)]">FRONTEND </span><span class="text-stroke text-[clamp(3rem,10vw,8rem)]">DESIGNS</span>
+            </h1>
+
+            <!-- Subtitle line -->
+            <div class="flex items-center gap-4 reveal">
+                <div class="line-reveal h-px bg-white/20 w-24"></div>
+                <p class="font-mono text-xs text-zinc-500 uppercase tracking-[0.25em]">A curated collection of my frontend work</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         MARQUEE
+    ════════════════════════════════════════════ -->
+    <div class="w-full bg-surface border-b border-border py-3 overflow-hidden relative">
+        <div class="flex whitespace-nowrap animate-marquee w-[200%] font-heading text-base font-bold text-zinc-600 tracking-widest uppercase">
+            <span class="mx-6">✦ HTML5</span><span class="mx-6">✦ CSS3</span><span class="mx-6">✦ JAVASCRIPT</span><span class="mx-6">✦ TAILWIND CSS</span><span class="mx-6">✦ UI/UX DESIGN</span><span class="mx-6">✦ RESPONSIVE</span><span class="mx-6">✦ ANIMATIONS</span><span class="mx-6">✦ VIBECODING</span>
+            <span class="mx-6">✦ HTML5</span><span class="mx-6">✦ CSS3</span><span class="mx-6">✦ JAVASCRIPT</span><span class="mx-6">✦ TAILWIND CSS</span><span class="mx-6">✦ UI/UX DESIGN</span><span class="mx-6">✦ RESPONSIVE</span><span class="mx-6">✦ ANIMATIONS</span><span class="mx-6">✦ VIBECODING</span>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════
+         PROJECTS GRID
+    ════════════════════════════════════════════ -->
+    <main class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Count header -->
+            <div class="flex items-center justify-between mb-12 reveal">
+                <p class="font-mono text-xs text-zinc-500 uppercase tracking-[0.2em]">
+                    SHOWING <span id="project-count" class="text-white font-bold">1</span> PROJECT
+                </p>
+                <div class="flex gap-3 text-zinc-600 font-mono text-xs">
+                    <span>FRONTEND</span>
+                    <span>/</span>
+                    <span class="text-white">ALL</span>
+                </div>
+            </div>
+
+            <!-- Projects list (large, cinematic cards like in screenshot) -->
+            <div class="flex flex-col gap-0 border-t border-border">
+
+                <!-- ── Project 01: Tunas Trans Website ── -->
+                <div class="project-card group border-b border-border py-12 reveal">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+                        <!-- Info (left side) -->
+                        <div class="flex flex-col justify-between gap-6 lg:order-first order-last">
+                            <div>
+                                <div class="flex items-start justify-between mb-4">
+                                    <span class="project-number font-mono text-xs text-zinc-600 font-bold">01 //</span>
+                                </div>
+                                <h2 class="font-heading text-3xl md:text-4xl font-black text-white tracking-tight mb-4 group-hover:opacity-80 transition-opacity">
+                                    TUNAS TRANS
+                                </h2>
+                                <p class="text-zinc-400 font-light leading-relaxed mb-6">
+                                    JASA SEWA BUS, ELF, DAN CARTER BUS TERPERCAYA DI SURABAYA. ARMADA NYAMAN, SOPIR PROFESIONAL, HARGA TRANSPARAN UNTUK WISATA, STUDY TOUR, ZIARAH & ACARA KELUARGA.
+                                </p>
+                                <div class="flex gap-2 flex-wrap font-mono">
+                                    <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800/50 text-zinc-300 rounded-full tracking-widest uppercase">HTML/CSS</span>
+                                    <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800/50 text-zinc-300 rounded-full tracking-widest uppercase">UI/UX</span>
+                                    <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800/50 text-zinc-300 rounded-full tracking-widest uppercase">COMPANY PROFILE</span>
+                                </div>
+                            </div>
+                            <a href="https://tunas-trans-cp.vercel.app/" target="_blank"
+                               class="inline-flex items-center text-xs font-mono font-bold text-white uppercase tracking-widest group/btn w-fit mt-2">
+                                <span class="border-b border-white/30 group-hover/btn:border-white pb-1 transition-colors">View Live Demo</span>
+                                <i class="fa-solid fa-arrow-right ml-3 group-hover/btn:translate-x-2 transition-transform"></i>
+                            </a>
+                        </div>
+
+                        <!-- Image Preview (right side) -->
+                        <div class="overflow-hidden rounded-2xl border border-border bg-surface aspect-video relative">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 border border-border rounded-xl flex items-center justify-center mx-auto mb-4">
+                                        <i class="fa-solid fa-bus text-3xl text-zinc-600"></i>
+                                    </div>
+                                    <p class="font-mono text-xs text-zinc-600 uppercase tracking-widest">Loading Preview</p>
+                                </div>
+                            </div>
+                            <img src="https://tunas-trans-cp.vercel.app/hero-bg.jpg" alt="Tunas Trans Preview"
+                                 onerror="this.style.display='none'"
+                                 class="preview-img absolute inset-0 w-full h-full object-cover z-10 opacity-80 hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div><!-- /projects list -->
+
+            <!-- Add more hint -->
+            <div class="mt-16 flex items-center justify-center reveal">
+                <div class="border border-dashed border-border rounded-2xl p-10 text-center max-w-md w-full hover:border-zinc-500 transition-colors">
+                    <div class="w-12 h-12 rounded-full border border-border flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-plus text-zinc-600"></i>
+                    </div>
+                    <p class="font-mono text-xs text-zinc-600 uppercase tracking-widest">More projects coming soon</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+    <!-- ═══════════════════════════════════════════
+         MINI FOOTER
+    ════════════════════════════════════════════ -->
+    <footer class="py-10 px-6 border-t border-border bg-surface">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <a href="index.html" class="text-xl font-heading font-black tracking-widest text-white hover:opacity-70 transition-opacity">
+                NADYA.
+            </a>
+            <div class="flex gap-6 text-zinc-600">
+                <a href="https://github.com/nadyapzfw-eng" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-github text-lg"></i></a>
+                <a href="https://www.linkedin.com/in/nadyapzfw-undefined-6b61a0420/" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in text-lg"></i></a>
+                <a href="https://wa.me/62895402857293" target="_blank" class="hover:text-white transition-colors"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                <a href="mailto:nadyapzfw@gmail.com" class="hover:text-white transition-colors"><i class="fa-solid fa-envelope text-lg"></i></a>
+            </div>
+            <div class="font-mono text-xs text-zinc-700 tracking-widest">&copy; <span id="year"></span> NADYA.</div>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Set year
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Scroll reveal
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+
+            document.querySelectorAll('.reveal, .line-reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
