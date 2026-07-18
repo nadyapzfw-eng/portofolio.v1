@@ -121,15 +121,7 @@ function setLanguage(lang) {
 
         el.style.opacity = 0;
         setTimeout(() => {
-            // Only replace pure text nodes to preserve child icon elements
-            el.childNodes.forEach(child => {
-                if (child.nodeType === 3) {
-                    child.nodeValue = targetText;
-                }
-            });
-            if (el.childNodes.length === 0 || (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3)) {
-                el.textContent = targetText;
-            }
+            el.innerHTML = targetText;
             el.style.opacity = 1;
         }, 200);
         el.style.transition = 'opacity 0.2s ease-in-out';

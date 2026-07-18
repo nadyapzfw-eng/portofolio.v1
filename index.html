@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nadya - Frontend Developer</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2309090b'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-weight='900' font-size='60' fill='white' text-anchor='middle' dominant-baseline='central'%3EN%3C/text%3E%3C/svg%3E">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,9 +13,9 @@
             theme: {
                 extend: {
                     colors: {
-                        background: '#09090b',
-                        surface:    '#18181b',
-                        border:     '#27272a',
+                        background: '#151515',
+                        surface:    '#1c1c1c',
+                        border:     '#2e2e33',
                     },
                     fontFamily: {
                         sans:    ['"Manrope"',  'sans-serif'],
@@ -24,11 +25,16 @@
                     animation: {
                         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'marquee':    'marquee 25s linear infinite',
+                        'float':      'float 6s ease-in-out infinite',
                     },
                     keyframes: {
                         marquee: {
                             '0%':   { transform: 'translateX(0%)' },
                             '100%': { transform: 'translateX(-50%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%':      { transform: 'translateY(-15px)' },
                         }
                     }
                 }
@@ -72,6 +78,7 @@
                 <a href="#about"      class="nav-link hover:text-white transition-colors duration-300" data-section="about"      data-en="ABOUT"      data-id="TENTANG">ABOUT</a>
                 <a href="#projects"   class="nav-link hover:text-white transition-colors duration-300" data-section="projects"   data-en="PROJECTS"   data-id="PROYEK">PROJECTS</a>
                 <a href="#experience" class="nav-link hover:text-white transition-colors duration-300" data-section="experience" data-en="EXPERIENCE" data-id="PENGALAMAN">EXPERIENCE</a>
+                <a href="#education"  class="nav-link hover:text-white transition-colors duration-300" data-section="education"  data-en="EDUCATION"  data-id="PENDIDIKAN">EDUCATION</a>
                 <a href="#contact"    class="nav-link hover:text-white transition-colors duration-300" data-section="contact"    data-en="CONTACT"    data-id="KONTAK">CONTACT</a>
             </div>
 
@@ -88,10 +95,8 @@
          HERO
     ════════════════════════════════════════════ -->
     <section id="hero" class="min-h-screen flex items-center relative pt-20 px-6">
-        <!-- Subtle noise texture overlay -->
-        <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
-             style="background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');">
-        </div>
+        <!-- Grid texture overlay -->
+        <div class="absolute inset-0 bg-grid pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto w-full relative z-10 reveal">
             <div class="inline-flex items-center gap-3 mb-8">
@@ -143,76 +148,77 @@
     <!-- ═══════════════════════════════════════════
          ABOUT
     ════════════════════════════════════════════ -->
-    <section id="about" class="py-32 px-6 relative section-spy">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+    <section id="about" class="py-32 px-6 relative section-spy overflow-hidden">
+        <!-- Grid texture overlay -->
+        <div class="absolute inset-0 bg-grid pointer-events-none opacity-40"></div>
+        <div class="max-w-7xl mx-auto flex flex-col gap-16">
+            <!-- Top: Section Title -->
+            <div class="reveal">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-white uppercase tracking-tight"
+                    data-en="About" data-id="Tentang">About</h2>
+                <div class="w-12 h-1 bg-white mt-6"></div>
+            </div>
 
-                <!-- Sticky Left: Section Title -->
-                <div class="lg:col-span-4 lg:sticky lg:top-32 reveal">
-                    <h2 class="font-heading text-4xl font-bold text-white uppercase tracking-tight"
-                        data-en="About" data-id="Tentang">About</h2>
-                    <div class="w-12 h-1 bg-white mt-6"></div>
-                </div>
-
-                <!-- Right: Content -->
-                <div class="lg:col-span-8">
-
-                    <!-- Profile Header: Photo + Identity -->
-                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-10 mb-12 reveal">
-
-                        <!-- Profile Photo (larger: 48×48 = 192px) -->
-                        <div class="relative w-48 h-48 flex-shrink-0 profile-ring rounded-full">
-                            <!-- Placeholder shown if pp.png is missing -->
-                            <div class="absolute inset-0 bg-surface rounded-full flex flex-col items-center justify-center border border-border z-0">
-                                <i class="fa-regular fa-user text-4xl text-zinc-600 mb-2"></i>
-                                <span class="text-zinc-600 font-mono text-xs tracking-widest">PHOTO</span>
-                            </div>
-                            <!-- Actual profile photo — replace pp.png with your image file -->
-                            <img src="pp.png"
-                                 alt="Nadya Putri Zahirah"
-                                 onerror="this.style.display='none'"
-                                 class="relative z-10 w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700">
+            <!-- Bottom: Content -->
+            <div class="w-full relative z-10">
+                <!-- Profile Header: Photo + Identity -->
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-12 lg:gap-16 mb-16 reveal">
+                    <!-- Profile Photo (larger: 64x64 = 256px) -->
+                    <div class="relative w-64 h-64 flex-shrink-0 profile-ring rounded-full shadow-[0_0_60px_-15px_rgba(255,255,255,0.1)] animate-float">
+                        <!-- Placeholder shown if pp.png is missing -->
+                        <div class="absolute inset-0 bg-surface rounded-full flex flex-col items-center justify-center border border-border z-0">
+                            <i class="fa-regular fa-user text-4xl text-zinc-600 mb-2"></i>
+                            <span class="text-zinc-600 font-mono text-xs tracking-widest">PHOTO</span>
                         </div>
-
-                        <!-- Identity + Bio Text -->
-                        <div class="text-center sm:text-left">
-                            <!-- Short greeting identity -->
-                            <p class="text-zinc-500 text-sm font-mono uppercase tracking-widest mb-2"
-                               data-en="Hello, I'm" data-id="Halo, Saya">Hello, I'm</p>
-
-                            <h3 class="font-heading text-2xl md:text-3xl font-bold text-white mb-1 leading-tight">
-                                Nadya Putri Zahirah
-                            </h3>
-                            <p class="text-zinc-500 text-sm font-mono mb-6"
-                               data-en="commonly called " data-id="biasa dipanggil ">commonly called <span class="text-zinc-300 font-semibold">Nadya</span></p>
-
-                            <!-- Existing bio paragraph -->
-                            <p class="text-zinc-300 text-lg leading-relaxed font-light"
-                               data-en="A passionate Frontend Developer with a strong focus on visual design details and interactions. I combine the creative 'vibecoding' method to design aesthetic and functional UI/UX. Possess fundamental backend understanding through learning the Laravel framework and phpMyAdmin database management."
-                               data-id="Seorang pengembang antarmuka (Frontend Developer) yang bersemangat dengan fokus kuat pada detail desain visual dan interaksi. Saya memadukan metode kreatif 'vibecoding' untuk merancang UI/UX yang estetik dan fungsional. Memiliki dasar pemahaman backend melalui pembelajaran framework Laravel dan manajemen database phpMyAdmin.">
-                                A passionate Frontend Developer with a strong focus on visual design details and interactions. I combine the creative 'vibecoding' method to design aesthetic and functional UI/UX. Possess fundamental backend understanding through learning the Laravel framework and phpMyAdmin database management.
-                            </p>
-                        </div>
+                        <!-- Actual profile photo -->
+                        <img src="pp.png"
+                             alt="Nadya Putri Zahirah"
+                             onerror="this.style.display='none'"
+                             class="relative z-10 w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700">
                     </div>
 
-                    <!-- Stats Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal delay-100">
-                        <!-- Changed from 1 Year → 5 Months -->
-                        <div class="bg-surface border border-border p-8 rounded-2xl flex flex-col items-start hover-border-glow group">
-                            <p class="text-5xl font-bold font-mono text-white mb-2 group-hover:text-zinc-300 transition-colors">5</p>
-                            <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold"
-                               data-en="Months Experience" data-id="Bulan Pengalaman">Months Experience</p>
-                        </div>
-                        <div class="bg-surface border border-border p-8 rounded-2xl flex flex-col items-start hover-border-glow group">
-                            <p class="text-5xl font-bold font-mono text-white mb-2 group-hover:text-zinc-300 transition-colors">3<span class="text-3xl text-zinc-600">+</span></p>
-                            <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold"
-                               data-en="Projects" data-id="Proyek">Projects</p>
-                        </div>
-                        <div class="bg-surface border border-border p-8 rounded-2xl flex flex-col items-start hover-border-glow group">
-                            <p class="text-5xl font-bold font-mono text-white mb-2 group-hover:text-zinc-300 transition-colors">7K<span class="text-3xl text-zinc-600">+</span></p>
-                            <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold"
-                               data-en="Lines of Code" data-id="Baris Kode">Lines of Code</p>
-                        </div>
+                    <!-- Identity + Bio Text -->
+                    <div class="text-center md:text-left flex-1 pt-4">
+                        <p class="text-zinc-500 text-sm font-mono uppercase tracking-widest mb-2"
+                           data-en="Hello, I'm" data-id="Halo, Saya">Hello, I'm</p>
+
+                        <h3 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+                            Nadya Putri Zahirah Fawwaz
+                        </h3>
+                        <p class="text-zinc-500 text-sm font-mono mb-8">
+                           <span data-en="commonly called " data-id="biasa dipanggil ">commonly called </span><span class="text-zinc-300 font-semibold">Nadya</span>
+                        </p>
+
+                        <!-- Existing bio paragraph -->
+                        <p class="text-zinc-300 text-lg leading-relaxed font-light mb-6 text-justify md:text-left"
+                           data-en="Hello! I am a Frontend Developer who focuses on visual design details, seamless interactions, and user comfort. I combine the creative 'vibecoding' method to execute UI/UX designs into aesthetic and functional products. I also have a basic understanding of backend systems using the Laravel framework and phpMyAdmin to ensure the application runs smoothly from end to end."
+                           data-id="Halo! Saya seorang Frontend Developer yang berfokus pada detail desain visual, interaksi yang mulus, dan kenyamanan pengguna. Saya memadukan metode kreatif 'vibecoding' untuk mengeksekusi desain UI/UX menjadi produk yang estetik dan fungsional. Saya juga memiliki pemahaman dasar sistem backend menggunakan framework Laravel dan phpMyAdmin untuk memastikan aplikasi berjalan dengan baik dari ujung ke ujung.">
+                            Halo! Saya seorang Frontend Developer yang berfokus pada detail desain visual, interaksi yang mulus, dan kenyamanan pengguna. Saya memadukan metode kreatif 'vibecoding' untuk mengeksekusi desain UI/UX menjadi produk yang estetik dan fungsional. Saya juga memiliki pemahaman dasar sistem backend menggunakan framework Laravel dan phpMyAdmin untuk memastikan aplikasi berjalan dengan baik dari ujung ke ujung.
+                        </p>
+                        <p class="text-zinc-300 text-lg leading-relaxed font-light text-justify md:text-left"
+                           data-en="In addition to delving into software engineering, I am a Taekwondo athlete. This background shapes me into a highly disciplined individual, capable of managing time well, and not easily giving up when solving problems (problem solving)."
+                           data-id="Selain mendalami rekayasa perangkat lunak, saya merupakan seorang atlet Taekwondo. Latar belakang ini membentuk saya menjadi individu yang sangat disiplin, mampu mengelola waktu dengan baik, dan tidak mudah menyerah saat memecahkan masalah (problem solving).">
+                            Selain mendalami rekayasa perangkat lunak, saya merupakan seorang atlet Taekwondo. Latar belakang ini membentuk saya menjadi individu yang sangat disiplin, mampu mengelola waktu dengan baik, dan tidak mudah menyerah saat memecahkan masalah (problem solving).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal delay-100">
+                    <div class="bg-surface border border-border p-8 rounded-2xl flex flex-col items-start hover-border-glow group">
+                        <p class="text-5xl font-bold font-mono text-white mb-2 group-hover:text-zinc-300 transition-colors">5<span class="text-3xl text-zinc-600">+</span></p>
+                        <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold"
+                           data-en="Months Experience" data-id="Bulan Pengalaman">Months Experience</p>
+                    </div>
+                    <div class="bg-surface border border-border p-8 rounded-2xl flex flex-col items-start hover-border-glow group">
+                        <p class="text-5xl font-bold font-mono text-white mb-2 group-hover:text-zinc-300 transition-colors">3<span class="text-3xl text-zinc-600"></span></p>
+                        <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold"
+                           data-en="Projects" data-id="Proyek">Projects</p>
+                    </div>
+                    <div class="bg-surface border border-border p-8 rounded-2xl flex flex-col items-start hover-border-glow group">
+                        <p class="text-5xl font-bold font-mono text-white mb-2 group-hover:text-zinc-300 transition-colors">7K<span class="text-3xl text-zinc-600">+</span></p>
+                        <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold"
+                           data-en="Lines of Code" data-id="Baris Kode">Lines of Code</p>
                     </div>
                 </div>
             </div>
@@ -223,24 +229,24 @@
     <!-- ═══════════════════════════════════════════
          PROJECTS
     ════════════════════════════════════════════ -->
-    <section id="projects" class="py-32 px-6 relative section-spy bg-surface/30">
+    <section id="projects" class="py-32 px-6 relative section-spy bg-surface/30 border-t border-border">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div class="flex flex-col gap-16">
 
-                <!-- Sticky Left: Section Title -->
-                <div class="lg:col-span-4 lg:sticky lg:top-32 reveal">
-                    <h2 class="font-heading text-4xl font-bold text-white uppercase tracking-tight"
+                <!-- Top: Section Title -->
+                <div class="reveal">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-white uppercase tracking-tight"
                         data-en="Selected Works" data-id="Karya Terpilih">Selected Works</h2>
                     <div class="w-12 h-1 bg-white mt-6"></div>
-                    <p class="text-zinc-500 mt-6 max-w-sm"
+                    <p class="text-zinc-500 mt-6 max-w-2xl font-light text-lg"
                        data-en="A collection of my recent frontend development and design projects."
                        data-id="Kumpulan proyek pengembangan antarmuka dan desain terbaru saya.">
                         A collection of my recent frontend development and design projects.
                     </p>
                 </div>
 
-                <!-- Right: Project Cards -->
-                <div class="lg:col-span-8 flex flex-col gap-8">
+                <!-- Bottom: Project Cards -->
+                <div class="w-full flex flex-col gap-8">
 
                     <!-- Project 01: Laravel Web App -->
                     <div class="group bg-surface border border-border rounded-3xl p-8 md:p-12 hover-border-glow reveal overflow-hidden relative">
@@ -322,19 +328,19 @@
     <!-- ═══════════════════════════════════════════
          EXPERIENCE
     ════════════════════════════════════════════ -->
-    <section id="experience" class="py-32 px-6 relative section-spy">
+    <section id="experience" class="py-32 px-6 relative section-spy border-t border-border">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div class="flex flex-col gap-16">
 
-                <!-- Sticky Left: Section Title -->
-                <div class="lg:col-span-4 lg:sticky lg:top-32 reveal">
-                    <h2 class="font-heading text-4xl font-bold text-white uppercase tracking-tight"
+                <!-- Top: Section Title -->
+                <div class="reveal">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-white uppercase tracking-tight"
                         data-en="Experience" data-id="Pengalaman">Experience</h2>
                     <div class="w-12 h-1 bg-white mt-6"></div>
                 </div>
 
-                <!-- Right: Experience List -->
-                <div class="lg:col-span-8 flex flex-col gap-6">
+                <!-- Bottom: Experience List -->
+                <div class="w-full flex flex-col gap-6">
 
                     <!-- Exp Item 1 -->
                     <div class="group reveal border-b border-border pb-10 flex flex-col md:flex-row md:items-start justify-between gap-6 hover:border-zinc-500 transition-colors duration-500">
@@ -377,16 +383,65 @@
 
 
     <!-- ═══════════════════════════════════════════
+         EDUCATION
+    ════════════════════════════════════════════ -->
+    <section id="education" class="py-32 px-6 relative section-spy bg-surface/30 border-t border-border">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col gap-16">
+                <!-- Top: Section Title -->
+                <div class="reveal">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-white uppercase tracking-tight"
+                        data-en="Education & Activities" data-id="Pendidikan & Aktivitas">Pendidikan & Aktivitas</h2>
+                    <div class="w-12 h-1 bg-white mt-6"></div>
+                </div>
+
+                <!-- Bottom: Content -->
+                <div class="w-full flex flex-col gap-6">
+                    <div class="group reveal border-b border-border pb-10 flex flex-col md:flex-row md:items-start justify-between gap-8 hover:border-zinc-500 transition-colors duration-500">
+                        <div class="w-full md:w-1/4 pt-1">
+                            <span class="font-mono text-xs text-zinc-500 uppercase tracking-widest font-bold"
+                                  data-en="2025 - Present" data-id="2025 - Sekarang">2025 - Sekarang</span>
+                        </div>
+                        <div class="w-full md:w-3/4">
+                            <h3 class="text-2xl font-bold text-white mb-2 group-hover:translate-x-2 transition-transform duration-300">SMK Antartika 2 Sidoarjo</h3>
+                            <p class="text-zinc-400 font-mono text-xs mb-8 uppercase tracking-widest leading-relaxed"
+                               data-en="Active Student in Software Engineering (RPL)" data-id="Siswa Aktif Jurusan Rekayasa Perangkat Lunak (RPL)">
+                                Siswa Aktif Jurusan Rekayasa Perangkat Lunak (RPL)
+                            </p>
+                            
+                            <div class="bg-background border border-border rounded-2xl p-6 md:p-8 hover-border-glow transition-colors">
+                                <h4 class="font-heading text-lg font-bold text-white mb-4"
+                                    data-en="Relevant Activity: School Website Content Editor" data-id="Aktivitas Relevan: Redaktur Konten Website Sekolah">
+                                    Aktivitas Relevan: Redaktur Konten Website Sekolah
+                                </h4>
+                                <p class="text-zinc-400 font-light leading-relaxed"
+                                   data-en="Responsible for structuring articles and categories on the school website for easy navigation <span class='text-white font-medium'>(Information Architecture)</span>, as well as writing and editing content with a user-friendly tone <span class='text-white font-medium'>(UX Writing)</span> to enhance reader comfort."
+                                   data-id="Bertanggung jawab menyusun struktur artikel dan kategori di website sekolah agar mudah dinavigasi oleh pembaca <span class='text-white font-medium'>(Information Architecture)</span>, serta menulis dan mengedit konten dengan gaya bahasa yang ramah pengguna <span class='text-white font-medium'>(UX Writing)</span> untuk meningkatkan kenyamanan pembaca.">
+                                    Bertanggung jawab menyusun struktur artikel dan kategori di website sekolah agar mudah dinavigasi oleh pembaca <span class="text-white font-medium">(Information Architecture)</span>, serta menulis dan mengedit konten dengan gaya bahasa yang ramah pengguna <span class="text-white font-medium">(UX Writing)</span> untuk meningkatkan kenyamanan pembaca.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
          CONTACT / FOOTER
     ════════════════════════════════════════════ -->
-    <footer id="contact" class="pt-32 pb-12 px-6 relative section-spy overflow-hidden bg-surface">
+    <footer id="contact" class="pt-32 pb-12 px-6 relative section-spy overflow-hidden bg-surface border-t border-border">
+        <!-- Grid texture overlay -->
+        <div class="absolute inset-0 bg-grid pointer-events-none opacity-30"></div>
         <div class="max-w-7xl mx-auto flex flex-col items-center justify-center text-center reveal relative z-10">
 
             <p class="font-mono text-xs tracking-widest text-zinc-500 uppercase mb-6"
                data-en="What's Next?" data-id="Selanjutnya?">What's Next?</p>
 
-            <h2 class="font-heading text-[12vw] leading-none font-black text-white mb-12 hover:opacity-80 transition-opacity tracking-tighter"
-                data-en="LET'S TALK" data-id="MARI BICARA">LET'S TALK</h2>
+            <h2 class="font-heading flex flex-col md:flex-row items-center gap-4 text-5xl md:text-[6rem] lg:text-[8rem] leading-none font-black text-white mb-12 tracking-tighter transition-all">
+                LET'S <span class="bg-background border border-border px-8 py-2 md:py-4 rounded-3xl text-emerald-400 font-mono text-4xl md:text-7xl lg:text-[7rem] shadow-[0_0_30px_rgba(52,211,153,0.15)]">&lt;TALK/&gt;</span>
+            </h2>
 
             <p class="text-zinc-400 mb-12 font-light max-w-xl mx-auto text-lg"
                data-en="Interested in collaborating or have a project to discuss? I'm always open to new opportunities."
