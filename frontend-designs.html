@@ -263,10 +263,17 @@
                             </a>
                         </div>
 
-                        <!-- Image Preview (right side) -->
+                        <!-- Live Preview (right side) -->
                         <div class="overflow-hidden rounded-2xl border border-border bg-surface aspect-video relative group-hover:border-zinc-500 transition-colors">
-                            <img src="yamaha_mockup.jpg" alt="MP Yamaha Motor Preview"
-                                 class="preview-img absolute inset-0 w-full h-full object-cover z-10 opacity-80 hover:opacity-100 transition-opacity">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 border border-border rounded-xl flex items-center justify-center mx-auto mb-4">
+                                        <i class="fa-solid fa-motorcycle text-3xl text-zinc-600"></i>
+                                    </div>
+                                    <p class="font-mono text-xs text-zinc-600 uppercase tracking-widest">Loading Preview</p>
+                                </div>
+                            </div>
+                            <iframe src="https://mpyamahamotor.vercel.app" class="absolute inset-0 w-full h-full border-none z-10 pointer-events-none opacity-80 hover:opacity-100 transition-opacity"></iframe>
                         </div>
                     </div>
                 </div>
@@ -300,10 +307,17 @@
                             </a>
                         </div>
 
-                        <!-- Image Preview (right side) -->
+                        <!-- Live Preview (right side) -->
                         <div class="overflow-hidden rounded-2xl border border-border bg-surface aspect-video relative group-hover:border-zinc-500 transition-colors">
-                            <img src="lpxlsatu_mockup.jpg" alt="LP XL Satu Preview"
-                                 class="preview-img absolute inset-0 w-full h-full object-cover z-10 opacity-80 hover:opacity-100 transition-opacity">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900">
+                                <div class="text-center">
+                                    <div class="w-16 h-16 border border-border rounded-xl flex items-center justify-center mx-auto mb-4">
+                                        <i class="fa-solid fa-globe text-3xl text-zinc-600"></i>
+                                    </div>
+                                    <p class="font-mono text-xs text-zinc-600 uppercase tracking-widest">Loading Preview</p>
+                                </div>
+                            </div>
+                            <iframe src="https://lp-xl-satu.vercel.app" class="absolute inset-0 w-full h-full border-none z-10 pointer-events-none opacity-80 hover:opacity-100 transition-opacity"></iframe>
                         </div>
                     </div>
                 </div>
