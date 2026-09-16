@@ -6,6 +6,17 @@
     <title>Nadya - Frontend Developer</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2309090b'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-weight='900' font-size='60' fill='white' text-anchor='middle' dominant-baseline='central'%3EN%3C/text%3E%3C/svg%3E">
 
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Portfolio Nadya Putri Zahirah - Frontend Developer & Student Rekayasa Perangkat Lunak (RPL). Berfokus pada UI/UX, Laravel, Tailwind CSS, dan web interaktif modern.">
+    <meta name="keywords" content="Nadya, Frontend Developer, UI/UX Design, Laravel, Tailwind CSS, Web Development, Portfolio">
+    <meta name="author" content="Nadya Putri Zahirah">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Nadya - Frontend Developer Portfolio">
+    <meta property="og:description" content="Membangun antarmuka web modern yang responsif, interaktif, dan berpusat pada pengalaman pengguna (UI/UX).">
+    <meta property="og:image" content="pp.png">
+    <meta property="og:type" content="website">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -250,24 +261,29 @@
 
                     <!-- Project 01: Laravel Web App -->
                     <div class="group bg-surface border border-border rounded-3xl p-8 md:p-12 hover-border-glow reveal overflow-hidden relative">
-                        <div class="flex flex-col justify-between h-full relative z-10">
-                            <div>
-                                <div class="flex gap-2 mb-6 flex-wrap font-mono uppercase">
-                                    <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">LARAVEL</span>
-                                    <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">PHP</span>
-                                    <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">PHPMYADMIN</span>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <div class="flex gap-2 mb-6 flex-wrap font-mono uppercase">
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">LARAVEL</span>
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">PHP</span>
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">PHPMYADMIN</span>
+                                    </div>
+                                    <h3 class="font-heading text-3xl font-bold tracking-tight mb-4 text-white group-hover:opacity-80 transition-opacity">Laravel Web Application</h3>
+                                    <p class="text-zinc-400 font-light leading-relaxed mb-8"
+                                       data-en="My first full-stack web application built using Laravel framework and phpMyAdmin for database management, featuring authentication and CRUD capabilities."
+                                       data-id="Aplikasi web full-stack pertama saya yang dibangun menggunakan framework Laravel dan phpMyAdmin untuk pengelolaan database, dilengkapi fitur autentikasi dan CRUD.">
+                                        My first full-stack web application built using Laravel framework and phpMyAdmin for database management, featuring authentication and CRUD capabilities.
+                                    </p>
                                 </div>
-                                <h3 class="font-heading text-3xl font-bold tracking-tight mb-4 text-white group-hover:opacity-80 transition-opacity">Laravel Web App</h3>
-                                <p class="text-zinc-400 font-light leading-relaxed mb-10"
-                                   data-en="MY FIRST FULL WEB APPLICATION BUILT WITH LARAVEL FRAMEWORK AND PHPMYADMIN."
-                                   data-id="APLIKASI WEB PENUH PERTAMA SAYA YANG DIBANGUN DENGAN FRAMEWORK LARAVEL DAN PHPMYADMIN.">
-                                    MY FIRST FULL WEB APPLICATION BUILT WITH LARAVEL FRAMEWORK AND PHPMYADMIN.
-                                </p>
+                                <a href="https://github.com/nadyapzfw-eng" target="_blank" class="inline-flex items-center text-xs font-mono font-bold text-white uppercase tracking-widest group/btn w-fit">
+                                    <span class="border-b border-white/30 group-hover/btn:border-white pb-1 transition-colors">Source Code (GitHub)</span>
+                                    <i class="fa-brands fa-github ml-3 text-lg group-hover/btn:rotate-12 transition-transform"></i>
+                                </a>
                             </div>
-                            <a href="#" class="inline-flex items-center text-xs font-mono font-bold text-white uppercase tracking-widest group/btn w-fit">
-                                <span class="border-b border-white/30 group-hover/btn:border-white pb-1 transition-colors">Source Code</span>
-                                <i class="fa-brands fa-github ml-3 text-lg group-hover/btn:rotate-12 transition-transform"></i>
-                            </a>
+                            <div class="overflow-hidden rounded-2xl border border-border bg-background aspect-video relative group-hover:border-zinc-500 transition-colors">
+                                <img src="laravel_mockup.jpg" alt="Laravel Web App Preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
                         </div>
                     </div>
 
@@ -282,9 +298,9 @@
                                 </div>
                                 <h3 class="font-heading text-3xl font-bold tracking-tight mb-4 text-white group-hover:opacity-80 transition-opacity">WordPress Website</h3>
                                 <p class="text-zinc-400 font-light leading-relaxed mb-10"
-                                   data-en="Creation of a company profile website that emphasizes accessibility, SEO-friendly, and a clean modern design."
-                                   data-id="Pembuatan website company profile yang menitikberatkan pada aksesibilitas, SEO-friendly, dan desain modern yang bersih.">
-                                    Creation of a company profile website that emphasizes accessibility, SEO-friendly, and a clean modern design.
+                                   data-en="Creation of a company profile website that emphasizes accessibility, SEO-friendly architecture, and a clean modern design."
+                                   data-id="Pembuatan website company profile yang menitikberatkan pada aksesibilitas, arsitektur SEO-friendly, dan desain modern yang bersih.">
+                                    Creation of a company profile website that emphasizes accessibility, SEO-friendly architecture, and a clean modern design.
                                 </p>
                             </div>
                             <a href="https://nadya805.wordpress.com/" target="_blank"
@@ -306,9 +322,9 @@
                                 </div>
                                 <h3 class="font-heading text-3xl font-bold tracking-tight mb-4 text-white group-hover:opacity-80 transition-opacity">Frontend Designs</h3>
                                 <p class="text-zinc-400 font-light leading-relaxed mb-10"
-                                   data-en="A curated collection of my frontend work, featuring sleek designs and responsive layouts."
-                                   data-id="Kumpulan karya desain frontend saya, menampilkan desain yang elegan dan tata letak responsif.">
-                                    A curated collection of my frontend work, featuring sleek designs and responsive layouts.
+                                   data-en="A curated collection of my frontend work, featuring sleek interactive designs and responsive layouts."
+                                   data-id="Kumpulan karya desain frontend saya, menampilkan desain interaktif yang elegan dan tata letak responsif.">
+                                    A curated collection of my frontend work, featuring sleek interactive designs and responsive layouts.
                                 </p>
                             </div>
                             <a href="frontend-designs.html"
@@ -316,6 +332,62 @@
                                 <span class="border-b border-white/30 group-hover/btn:border-white pb-1 transition-colors">View Collection</span>
                                 <i class="fa-solid fa-arrow-right ml-3 group-hover/btn:translate-x-2 transition-transform"></i>
                             </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 04: MP Yamaha Motor -->
+                    <div class="group bg-surface border border-border rounded-3xl p-8 md:p-12 hover-border-glow reveal delay-100 overflow-hidden relative">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <div class="flex gap-2 mb-6 flex-wrap font-mono uppercase">
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">HTML/CSS</span>
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">JAVASCRIPT</span>
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">UI/UX</span>
+                                    </div>
+                                    <h3 class="font-heading text-3xl font-bold tracking-tight mb-4 text-white group-hover:opacity-80 transition-opacity">MP Yamaha Motor</h3>
+                                    <p class="text-zinc-400 font-light leading-relaxed mb-8"
+                                       data-en="A modern dealership landing page for MP Yamaha Motor, featuring a clean product showcase, responsive layout, and engaging UI design."
+                                       data-id="Halaman utama dealer modern untuk MP Yamaha Motor, menampilkan showcase produk yang bersih, tata letak responsif, dan desain UI yang menarik.">
+                                        A modern dealership landing page for MP Yamaha Motor, featuring a clean product showcase, responsive layout, and engaging UI design.
+                                    </p>
+                                </div>
+                                <a href="https://mpyamahamotor.vercel.app" target="_blank" class="inline-flex items-center text-xs font-mono font-bold text-white uppercase tracking-widest group/btn w-fit">
+                                    <span class="border-b border-white/30 group-hover/btn:border-white pb-1 transition-colors">Live Demo</span>
+                                    <i class="fa-solid fa-arrow-right ml-3 group-hover/btn:translate-x-2 transition-transform"></i>
+                                </a>
+                            </div>
+                            <div class="overflow-hidden rounded-2xl border border-border bg-background aspect-video relative group-hover:border-zinc-500 transition-colors">
+                                <img src="yamaha_mockup.jpg" alt="MP Yamaha Motor Preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 05: LP XL Satu -->
+                    <div class="group bg-surface border border-border rounded-3xl p-8 md:p-12 hover-border-glow reveal delay-200 overflow-hidden relative">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10">
+                            <div class="flex flex-col justify-between h-full">
+                                <div>
+                                    <div class="flex gap-2 mb-6 flex-wrap font-mono uppercase">
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">HTML/CSS</span>
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">JAVASCRIPT</span>
+                                        <span class="px-3 py-1 text-[10px] font-bold border border-zinc-700 bg-zinc-800 text-zinc-300 rounded-full tracking-widest">LANDING PAGE</span>
+                                    </div>
+                                    <h3 class="font-heading text-3xl font-bold tracking-tight mb-4 text-white group-hover:opacity-80 transition-opacity">LP XL Satu</h3>
+                                    <p class="text-zinc-400 font-light leading-relaxed mb-8"
+                                       data-en="A high-converting product landing page with bold typographic hierarchy, smooth animations, and a clear call-to-action structure."
+                                       data-id="Landing page produk yang dirancang dengan hierarki tipografi yang kuat, animasi yang halus, dan struktur call-to-action yang jelas.">
+                                        A high-converting product landing page with bold typographic hierarchy, smooth animations, and a clear call-to-action structure.
+                                    </p>
+                                </div>
+                                <a href="https://lp-xl-satu.vercel.app" target="_blank" class="inline-flex items-center text-xs font-mono font-bold text-white uppercase tracking-widest group/btn w-fit">
+                                    <span class="border-b border-white/30 group-hover/btn:border-white pb-1 transition-colors">Live Demo</span>
+                                    <i class="fa-solid fa-arrow-right ml-3 group-hover/btn:translate-x-2 transition-transform"></i>
+                                </a>
+                            </div>
+                            <div class="overflow-hidden rounded-2xl border border-border bg-background aspect-video relative group-hover:border-zinc-500 transition-colors">
+                                <img src="lpxlsatu_mockup.jpg" alt="LP XL Satu Preview" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
                         </div>
                     </div>
 
@@ -369,9 +441,9 @@
                             <p class="text-zinc-500 font-mono text-xs mb-4 uppercase tracking-widest"
                                data-en="Laravel & Database" data-id="Laravel & Database">Laravel &amp; Database</p>
                             <p class="text-zinc-400 font-light leading-relaxed"
-                               data-en="USED LARAVEL FOR MY FIRST DEVELOPMENT FRAMEWORK. GAINED SOLID EXPERIENCE MANAGING DATABASES AND STRUCTURING DATA USING PHPMYADMIN."
-                               data-id="DIGUNAKAN LARAVEL SEBAGAI FRAMEWORK PENGEMBANGAN PERTAMA SAYA. MENDAPATKAN PENGALAMAN MENGELOLA DATABASE DAN MENYUSUN DATA MENGGUNAKAN PHPMYADMIN.">
-                                USED LARAVEL FOR MY FIRST DEVELOPMENT FRAMEWORK. GAINED SOLID EXPERIENCE MANAGING DATABASES AND STRUCTURING DATA USING PHPMYADMIN.
+                               data-en="Used Laravel as my primary web development framework. Gained solid experience managing relational databases and structuring data using phpMyAdmin."
+                               data-id="Menggunakan Laravel sebagai framework pengembangan web utama saya. Mendapatkan pengalaman yang solid dalam mengelola database relasional dan menyusun data menggunakan phpMyAdmin.">
+                                My first experience with Laravel framework, gaining solid hands-on experience in managing relational databases and structuring data using phpMyAdmin.
                             </p>
                         </div>
                     </div>
