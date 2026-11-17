@@ -1,0 +1,80 @@
+<!-- HEADER BANNER DINAMIS -->
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=007ACC&height=280&section=header&text=Hi%20there,%20I'm%20nadyapzfw&fontSize=45&animation=twinkle&fontColor=ffffff" width="100%" alt="Header Banner" />
+</div>
+
+<br/>
+
+<!-- LOGO ANIMASI & PERKENALAN SINGKAT -->
+<div align="center">
+  <h2> Selamat Datang di Dunia Pemrograman Saya!</h2>
+  <p>Saya adalah seorang pemula IT yang fokus pada pengembangan perangkat lunak menggunakan <b>C++</b> dan <b>Web Development</b>. Senang mempelajari teknologi baru dan memecahkan tantangan algoritma.</p>
+</div>
+
+<hr/>
+
+<!-- SECTION 1: TECH STACKS & TOOLS -->
+<h3>🛠️ Teknologi & Peralatan yang Digunakan</h3>
+<p>Berikut adalah beberapa teknologi dan alat yang sering saya gunakan dalam proyek saya:</p>
+
+<p align="left">
+  <!-- Bahasa Pemrograman -->
+  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++" />
+  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" alt="C Language" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+  
+  <!-- Peralatan / Tools -->
+  <br/>
+  <img src="https://img.shields.io/badge/Visual_Studio_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VS Code" />
+  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" />
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows OS" />
+</p>
+
+<hr/>
+
+<!-- SECTION 2: STATISTIK GITHUB INTERAKTIF -->
+<h3>📊 Statistik GitHub Saya</h3>
+<p>Performa coding saya yang tercatat otomatis oleh GitHub:</p>
+
+<div align="center">
+  <table border="0">
+    <tr>
+      <!-- Kartu Statistik Umum -->
+      <td valign="top" width="50%">
+        <img src="https://github-readme-stats.vercel.app/api?username=[USERNAME_KAMU]&show_icons=true&theme=radical&count_private=true" alt="Statistik GitHub nadyapzfw" />
+      </td>
+      <!-- Kartu Bahasa Pemrograman yang Paling Sering Digunakan -->
+      <td valign="top" width="50%">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=[USERNAME_KAMU]&layout=compact&theme=radical" alt="Bahasa Populer nadyapzfw" />
+      </td>
+    </tr>
+    <tr>
+      <!-- Kartu Catatan Streak Harian (Konsistensi Commit) -->
+      <td colspan="2" align="center">
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=[USERNAME_KAMU]&theme=radical" alt="GitHub Streak nadyapzfw" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+<hr/>
+
+<!-- SECTION 3: SOSIAL MEDIA / KONTAK -->
+<div align="center">
+  <h3> Hubungi Saya</h3>
+  <p>Mari berteman dan berkolaborasi di platform lain:</p>
+  <a href="https://www.linkedin.com/in/nadyapzfw-undefined-6b61a0420/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="https://www.instagram.com/nadyazfw/?hl=en" target="_blank">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />
+  </a>
+</div>
+
+<br/>
+<div align="center">
+  <img src="https://komarev.com/ghpvc/?username=nadyapzfw&color=007acc&style=flat-square&label=Profile+Views" alt="Jumlah Pengunjung Profil" />
+</div>
